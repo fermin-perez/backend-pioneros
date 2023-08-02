@@ -67,7 +67,26 @@ const register = async (req = request, res = response) => {
   }
 };
 
+const renew = async (req = request, res = response) => {
+  try {
+    const { user } = req;
+
+    //Generate JWT
+    const token = await generateJWT(user.id);
+
+    res.json({
+      token,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      msg: 'Error renewing token',
+    });
+  }
+};
+
 module.exports = {
   login,
   register,
+  renew,
 };
