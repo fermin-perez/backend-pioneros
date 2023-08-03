@@ -35,7 +35,7 @@ const login = async (req = request, res = response) => {
     //Generate JWT
     const token = await generateJWT(user.id);
 
-    res.json({
+    res.status(200).json({
       user,
       token,
     });
@@ -58,7 +58,13 @@ const register = async (req = request, res = response) => {
 
     await user.save();
 
-    res.status(201).json(user);
+    //Generate JWT
+    const token = await generateJWT(user.id);
+
+    res.status(201).json({
+      user,
+      token,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json({
