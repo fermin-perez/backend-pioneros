@@ -80,7 +80,8 @@ const renew = async (req = request, res = response) => {
     //Generate JWT
     const token = await generateJWT(user.id);
 
-    res.json({
+    res.status(200).json({
+      user,
       token,
     });
   } catch (error) {
