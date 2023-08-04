@@ -24,6 +24,10 @@ const UserSchema = Schema({
     type: Boolean,
     default: true,
   },
+  active: {
+    type: Boolean,
+    default: true,
+  },
 });
 
 UserSchema.methods.toJSON = function () {
